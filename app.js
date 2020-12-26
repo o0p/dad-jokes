@@ -3,7 +3,6 @@ const btn = document.querySelector('.btn');
 
 const addNewJoke = async()=>{
     const jokeText = await getDadJoke();
-    console.log(jokeText);
     const newLI = document.createElement('li');
     newLI.append(jokeText);
     jokes.append(newLI);
@@ -12,8 +11,11 @@ const addNewJoke = async()=>{
 btn.addEventListener('click', addNewJoke);
 
 const getDadJoke = async()=>{
-    const config = {headers: {Accept: 'application/json'}};
-    const res = await axios.get('https://icanhazdadjoke.com/', config);
-    return res.data.joke;
+    try {
+        const config = {headers: {Accept: 'application/json'}};
+        const res = await axios.get('https://icanhazdadjoke.com/', config);
+        return res.data.joke;
+    } catch (e) {
+        return 'No Jokes Available, SORRY :('
+    }
 }
-
