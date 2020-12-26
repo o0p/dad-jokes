@@ -1,6 +1,8 @@
 const jokes = document.querySelector('#jokes');
-
 const btn = document.querySelector('.btn');
+btn.addEventListener('click', ()=>{
+    getDadJoke();
+});
 
 const getDadJoke = async ()=>{
     const config = {headers: {Accept: 'application/json'}};
@@ -8,10 +10,6 @@ const getDadJoke = async ()=>{
     const newLI = document.createElement('li');
     newLI.append(res.data.joke);
     jokes.append(newLI);
-
-    btn.addEventListener('click', ()=>{
-        console.log('l')
-    });
 
 
 }
